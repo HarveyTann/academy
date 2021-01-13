@@ -1,0 +1,66 @@
+<odoo>
+    <!-- Index/ homepage -->
+    <template id="index">
+        <t t-call="website.layout">
+            <t t-set="title">Academy</t>
+            <div class="oe_structure">
+                <div class="container">
+                    <p>Hello, world!</p>
+                    <t t-foreach="teachers" t-as="teacher">
+                        <p><a t-attf-href="/academy/{{ slug(teacher) }}">
+                            <t t-esc="teacher.name"/></a>
+                        </p>
+                    </t>
+                    <p>There should be links to teachers bio ^</p>
+                </div>
+            </div>
+        </t>
+    </template>
+    <!-- Teacher's biography -->
+    <template id="biography">
+        <t t-call="website.layout">
+            <t t-set="title">Academy</t>
+            <div class="oe_structure"/>
+            <div class="oe_structure">
+                <div class="container">
+                    <!-- <h3><t t-esc="person.name"/></h3>
+                    <div><t t-esc="person.biography"/></div> -->
+                    <!-- 
+                        t-field allows editting field content from website 
+                        using field-specific interfaces
+                    -->
+                    <h3 t-field="person.name"/>
+                    <p>Last modified: <i t-field="person.write_date"/></p>
+                    
+                    <!-- human-readable version -->
+                    <p>Last modified(human-readable): <i t-field="person.write_date" t-options='{"format": "long"}'/></p>
+
+                    <!-- relative version -->
+                    <p>Last modified(relative): <i t-field="person.write_date" t-options='{"widget": "relative"}'/></p>
+                    <div t-field="person.biography"/>
+                </div>
+            </div>
+            <div class="oe_structure"/>
+        </t>
+    </template>
+<!--
+        <template id="listing">
+          <ul>
+            <li t-foreach="objects" t-as="object">
+              <a t-attf-href="#{ root }/objects/#{ object.id }">
+                <t t-esc="object.display_name"/>
+              </a>
+            </li>
+          </ul>
+        </template>
+        <template id="object">
+          <h1><t t-esc="object.display_name"/></h1>
+          <dl>
+            <t t-foreach="object._fields" t-as="field">
+              <dt><t t-esc="field"/></dt>
+              <dd><t t-esc="object[field]"/></dd>
+            </t>
+          </dl>
+        </template>
+-->
+</odoo>
