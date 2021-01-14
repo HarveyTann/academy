@@ -5,3 +5,5 @@ class Teachers(models.Model):
 
     name = fields.Char()
     biography = fields.Html()
+
+    course_ids = fields.One2many('academy.courses', 'teacher_id', string="Courses")
